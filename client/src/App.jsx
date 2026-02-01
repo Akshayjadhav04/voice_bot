@@ -85,6 +85,8 @@ function App() {
         }
     };
 
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
     const handleSend = async (text = inputText) => {
         if (!text.trim()) return;
 
@@ -95,7 +97,7 @@ function App() {
         setIsProcessing(true);
 
         try {
-            const response = await fetch('/api/chat', {
+            const response = await fetch(`${BACKEND_URL}/api/chat`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ message: text })
